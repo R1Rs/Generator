@@ -25,23 +25,10 @@ export default class Team {
     return Array.from(this.members);
   }
 
-  [Symbol.iterator]() {
+  * [Symbol.iterator]() {
     const team = this.toArray();
-    let current = 0;
-    const last = this.quantityMembers;
-
-    return {
-      next() {
-        if (current < last) {
-          return {
-            done: false,
-            // eslint-disable-next-line no-plusplus
-            value: team[current++],
-          };
-        } return {
-          done: true,
-        };
-      },
-    };
+    for (let value = 0; value <= this.quantityMembers; value ++) {
+      yield team[value];
+    }
   }
 }
